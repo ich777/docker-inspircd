@@ -16,7 +16,7 @@ echo "---Version Check---"
 if [ -z "$CUR_V" ]; then
 	echo "---InspIRCd not found, downloading and installing v$LAT_V...---"
 	cd ${DATA_DIR}
-	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz "https://github.com/ich777/docker-inspircd/releases/download/$LAT_V/InspIRCd-v$LAT_V.tar.gz" ; then
+	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz "https://github.com/ich777/inspircd/releases/download/$LAT_V/InspIRCd-v$LAT_V.tar.gz" ; then
 		echo "---Successfully downloaded InspIRCd v$LAT_V---"
 	else
 		echo "---Something went wrong, can't download InspIRCd v$LAT_V, putting container into sleep mode!---"
@@ -27,7 +27,7 @@ if [ -z "$CUR_V" ]; then
 elif [ "$CUR_V" != "$LAT_V" ]; then
 	echo "---Version missmatch, installed v$CUR_V, downloading and installing latest v$LAT_V...---"
 	cd ${DATA_DIR}
-	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz "https://github.com/ich777/docker-inspircd/releases/download/$LAT_V/InspIRCd-v$LAT_V.tar.gz" ; then
+	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz "https://github.com/ich777/inspircd/releases/download/$LAT_V/InspIRCd-v$LAT_V.tar.gz" ; then
 		echo "---Successfully downloaded InspIRCd v$LAT_V---"
 	else
 		echo "---Something went wrong, can't download InspIRCd v$LAT_V, putting container into sleep mode!---"
