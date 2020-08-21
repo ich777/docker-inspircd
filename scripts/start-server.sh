@@ -1,16 +1,11 @@
 #!/bin/bash
 INSPIRCD_ROOT="${DATA_DIR}"
 
-LAT_V="$(curl -s https://api.github.com/repos/ich777/inspircd/releases/latest | grep tag_name | cut -d '"' -f4)"
-CUR_V="$(${DATA_DIR}/bin/inspircd --version 2>/dev/null | grep "InspIRCd-" | cut -d '-' -f2)"
-if [ -z $LAT_V ]; then
-	if [ -z $CUR_V ]; then
-		echo "---Can't get latest version of InspIRCd, falling back to v3.7.0---"
-		LAT_V="3.7.0"
-	else
-		echo "---Can't get latest version of InspIRCd, falling back to v$CUR_V---"
-	fi
+LAT_V="$(wget -qO- https://github.com/ich777/versions/raw/master/InspIRCd | grep FORK | cut -d '=' -f2)"
+if [ -z "$LAT_V"]; then
+	LAT_V="$(curl -s https://api.github.com/repos/ich777/inspircd/releases/latest | grep tag_name | cut -d '"' -f4)"
 fi
+CUR_V="$(${DATA_DIR}/bin/inspircd --version 2>/dev/null | grep "InspIRCd-" | cut -d '-' -f2)"
 
 echo "---Version Check---"
 if [ -z "$CUR_V" ]; then
