@@ -2,7 +2,7 @@
 INSPIRCD_ROOT="${DATA_DIR}"
 
 LAT_V="$(wget -qO- https://github.com/ich777/versions/raw/master/InspIRCd | grep FORK | cut -d '=' -f2)"
-if [ -z "$LAT_V"]; then
+if [ -z "$LAT_V" ]; then
 	LAT_V="$(curl -s https://api.github.com/repos/ich777/inspircd/releases/latest | grep tag_name | cut -d '"' -f4)"
 fi
 CUR_V="$(${DATA_DIR}/bin/inspircd --version 2>/dev/null | grep "InspIRCd-" | cut -d '-' -f2)"
