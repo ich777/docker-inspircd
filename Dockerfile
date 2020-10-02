@@ -1,4 +1,4 @@
-FROM ich777/novnc-baseimage
+FROM ich777/debian-baseimage
 
 LABEL maintainer="admin@minenet.at"
 
