@@ -1,5 +1,6 @@
 #!/bin/bash
 INSPIRCD_ROOT="${DATA_DIR}"
+ARCH="armv7"
 
 LAT_V="$(wget -qO- https://github.com/ich777/versions/raw/master/InspIRCd3 | grep FORK | cut -d '=' -f2)"
 if [ -z "$LAT_V" ]; then
@@ -11,18 +12,18 @@ echo "---Version Check---"
 if [ -z "$CUR_V" ]; then
 	echo "---InspIRCd not found, downloading and installing v$LAT_V...---"
 	cd ${DATA_DIR}
-	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz "https://github.com/ich777/inspircd/releases/download/$LAT_V/InspIRCd-v$LAT_V.tar.gz" ; then
+	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/InspIRCd-v$LAT_V-$ARCH.tar.gz "https://github.com/ich777/inspircd/releases/download/$LAT_V/InspIRCd-v$LAT_V-$ARCH.tar.gz" ; then
 		echo "---Successfully downloaded InspIRCd v$LAT_V---"
 	else
 		echo "---Something went wrong, can't download InspIRCd v$LAT_V, putting container into sleep mode!---"
 		sleep infinity
 	fi
-	tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz
-	rm ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz
+	tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/InspIRCd-v$LAT_V-$ARCH.tar.gz
+	rm ${DATA_DIR}/InspIRCd-v$LAT_V-$ARCH.tar.gz
 elif [ "$CUR_V" != "$LAT_V" ]; then
 	echo "---Version missmatch, installed v$CUR_V, downloading and installing latest v$LAT_V...---"
 	cd ${DATA_DIR}
-	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz "https://github.com/ich777/inspircd/releases/download/$LAT_V/InspIRCd-v$LAT_V.tar.gz" ; then
+	if wget -q -nc --show-progress --progress=bar:force:noscroll -O ${DATA_DIR}/InspIRCd-v$LAT_V-$ARCH.tar.gz "https://github.com/ich777/inspircd/releases/download/$LAT_V/InspIRCd-v$LAT_V-$ARCH.tar.gz" ; then
 		echo "---Successfully downloaded InspIRCd v$LAT_V---"
 	else
 		echo "---Something went wrong, can't download InspIRCd v$LAT_V, putting container into sleep mode!---"
@@ -30,8 +31,8 @@ elif [ "$CUR_V" != "$LAT_V" ]; then
 	fi
 	echo "---Moving configruation---"
 	mv ${DATA_DIR}/conf/ /tmp/
-	tar -C ${DATA_DIR} --strip-components=1 --overwrite -xf ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz
-	rm ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz
+	tar -C ${DATA_DIR} --strip-components=1 --overwrite -xf ${DATA_DIR}/InspIRCd-v$LAT_V-$ARCH.tar.gz
+	rm ${DATA_DIR}/InspIRCd-v$LAT_V-$ARCH.tar.gz
 	echo "---Restoring configuration---"
 	rm -R ${DATA_DIR}/conf
 	mv /tmp/conf/ ${DATA_DIR}/
