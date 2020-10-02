@@ -1,6 +1,6 @@
 #!/bin/bash
 INSPIRCD_ROOT="${DATA_DIR}"
-ARCH="armv7"
+ARCH="arm64"
 
 LAT_V="$(wget -qO- https://github.com/ich777/versions/raw/master/InspIRCd3 | grep FORK | cut -d '=' -f2)"
 if [ -z "$LAT_V" ]; then
