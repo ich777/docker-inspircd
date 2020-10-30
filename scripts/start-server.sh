@@ -34,7 +34,8 @@ elif [ "$CUR_V" != "$LAT_V" ]; then
 	rm ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz
 	echo "---Restoring configuration---"
 	rm -R ${DATA_DIR}/conf
-	mv /tmp/conf/ ${DATA_DIR}/
+	mkdir -p /${DATA_DIR}/conf
+	mv /tmp/conf/* ${DATA_DIR}/conf
 elif [ "$CUR_V" == "$LAT_V" ]; then
 	echo "---InspIRCd v$CUR_V up-to-date---"
 fi
