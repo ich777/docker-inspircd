@@ -13,7 +13,7 @@ The container will create a TLS certificate at first start or if the certificate
 ## Env params
 | Name | Value | Example |
 | --- | --- | --- |
-| DATA_DIR | Folder for configfiles and the application | /nzbhydra2 |
+| DATA_DIR | Folder for configfiles and the application | /inspircd |
 | INSP_NET_SUFFIX | Suffix used behind the server name (in this format '.example.com') | .example.com |
 | INSP_NET_NAME | Name advertised as network name | InspIRCD |
 | INSP_ADMIN_NAME | Name showed by the /admin command | Jonny English |
