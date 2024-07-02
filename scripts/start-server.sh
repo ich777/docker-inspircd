@@ -19,6 +19,9 @@ if [ -z "$CUR_V" ]; then
 	fi
 	tar -C ${DATA_DIR} --strip-components=1 -xf ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz
 	rm ${DATA_DIR}/InspIRCd-v$LAT_V.tar.gz
+	# Fix for userip and ssl
+	sed -i '/<module name="userip">/ s/^/#/' ${DATA_DIR}/conf/modules.conf
+	sed -i '/<module name="ssl_gnutls">/ s/^/#/' ${DATA_DIR}/conf/modules.conf
 elif [ "$CUR_V" != "$LAT_V" ]; then
 	echo "---Version missmatch, installed v$CUR_V, downloading and installing latest v$LAT_V...---"
 	cd ${DATA_DIR}
