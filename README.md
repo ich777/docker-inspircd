@@ -1,3 +1,5 @@
+# DEPRECATED
+
 # InspIRCd in Docker optimized for Unraid
 
 InspIRCd is a modular Internet Relay Chat (IRC) server written in C++
